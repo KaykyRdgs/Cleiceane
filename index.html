@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>1 mês de história</title>
+    <style>
+        /* TELA HACKER E LOGIN */
+        #hacker-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:black; color:#0f0; z-index:99999; display:flex; align-items:center; justify-content:center; font-family:monospace; padding:20px; }
+        #login-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:#050505; z-index:99998; display:none; align-items:center; justify-content:center; }
+        
+        /* O SEU CSS ORIGINAL COMPLETO */
+        body { background: #080808; color: #f5f5f5; font-family: 'Poppins', sans-serif; }
+        .hero { height: 100vh; background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.85)), url('IMG_0992.jpeg') center/cover; display: flex; flex-direction: column; justify-content: flex-end; text-align: center; padding-bottom: 60px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .gallery-item { margin-bottom: 40px; background: #151515; border-radius: 16px; padding: 20px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .stat-card { background: #151515; padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 999; display: none; align-items: center; justify-content: center; }
+        .modal-content { background: #151515; width: 90%; max-width: 350px; border-radius: 20px; padding: 30px; text-align: center; border: 1px solid #FFB6C1; }
+    </style>
+</head>
+<body>
+
+    <!-- CAPA HACKER -->
+    <div id="hacker-screen"><div id="hacker-text"></div></div>
+
+    <!-- TELA DE SENHA -->
+    <div id="login-screen">
+        <div style="background:#151515; padding:40px; border-radius:20px; border:1px solid #FFB6C1; width:90%; max-width:350px;">
+            <h2 style="color:#FFB6C1; margin-bottom:20px;">Verificação 🔐</h2>
+            <input type="text" id="login-nome" placeholder="Seu nome" style="width:100%; padding:12px; margin:10px 0; background:#222; border:1px solid #FFB6C1; color:white;">
+            <input type="date" id="login-data" style="width:100%; padding:12px; margin:10px 0; background:#222; border:1px solid #FFB6C1; color:white;">
+            <button id="btn-login" style="background:#D4AF37; padding:12px; width:100%; border:none; border-radius:25px; cursor:pointer;">Acessar</button>
+        </div>
+    </div>
+
+    <!-- O SEU LAYOUT ORIGINAL COMPLETO ABAIXO -->
+    <header class="hero">
+        <div class="container">
+            <h1>1 mês de história<br>(até agora)</h1>
+            <h3>24 de maio &rarr; 24 de junho</h3>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Registros</h2>
+        <div class="gallery-item"><img src="IMG_0671_Original.jpeg" width="100%"></div>
+        <div class="gallery-item"><img src="IMG_0986.jpeg" width="100%"></div>
+        <div class="gallery-item"><img src="IMG_0984.jpeg" width="100%"></div>
+        
+        <h2>Estatísticas</h2>
+        <div class="stats-grid">
+            <div class="stat-card"><h3>1 Mês</h3><p>Tempo de história</p></div>
+            <div class="stat-card"><h3>&infin;</h3><p>Doces consumidos</p></div>
+        </div>
+        <button id="btn-doce" style="background:none; border:none; font-size:40px; cursor:pointer; margin-top:20px;">🍭</button>
+    </div>
+
+    <!-- MODAL DOCE -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <img src="IMG_1052.jpeg" style="width:100px; border-radius:50%; border:2px solid #FFB6C1;">
+            <h3>Cleiceane</h3>
+            <p>Subespécie: Formiga 🍬</p>
+            <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; padding:10px 20px;">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // HACKER
+        const txt = document.getElementById('hacker-text');
+        const msgs = ["Iniciando...", "🚨 INVASÃO POR KAYKY 🚨", "Acessando..."];
+        let i = 0;
+        function digita() {
+            if (i < msgs.length) { txt.innerHTML += msgs[i] + "<br>"; i++; setTimeout(digita, 800); }
+            else { setTimeout(() => { document.getElementById('hacker-screen').style.display = 'none'; document.getElementById('login-screen').style.display = 'flex'; }, 1000); }
+        }
+        digita();
+
+        // LOGIN
+        document.getElementById('btn-login').onclick = () => {
+            if (document.getElementById('login-nome').value.toLowerCase().includes('cleice') && document.getElementById('login-data').value === '2026-05-24') {
+                document.getElementById('login-screen').style.display = 'none';
+            } else { alert('Dados incorretos!'); }
+        };
+
+        // DOCE
+        document.getElementById('btn-doce').onclick = () => document.getElementById('modal').style.display = 'flex';
+    </script>
+</body>
+</html>
