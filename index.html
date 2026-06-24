@@ -4,89 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1 mês de história</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg-color: #080808; --bg-card: #151515; --text-main: #f5f5f5; --accent-gold: #D4AF37; --accent-pink: #FFB6C1; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-main); }
-        
-        /* Hacker e Login */
-        .hacker-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: black; color: #0f0; font-family: monospace; padding: 30px; z-index: 99999; display: flex; align-items: center; justify-content: center; }
-        .envelope-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; z-index: 99998; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hidden { display: none !important; }
-        .login-box { background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--accent-pink); width: 90%; max-width: 350px; }
-        .input-form { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid var(--accent-pink); border-radius: 8px; color: #fff; }
-        .btn-login { background: var(--accent-gold); color: #000; padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; width: 100%; }
 
-        /* Layout Original */
-        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.85)), url('IMG_0992.jpeg') center/cover; display: flex; flex-direction: column; justify-content: flex-end; text-align: center; padding-bottom: 60px; }
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-        .gallery-item { margin-bottom: 40px; background: var(--bg-card); border-radius: 16px; padding: 20px; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .stat-card { background: var(--bg-card); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
-        
-        /* Modal Doce */
-        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index: 999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .modal-content { background: var(--bg-card); width: 90%; max-width: 350px; padding: 30px; border-radius: 20px; border: 1px solid var(--accent-pink); text-align: center; }
-        .modal-img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent-pink); margin-bottom: 15px; }
-    </style>
+<style>
+    /* Estilos do Hacker e Login */
+    #hacker-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:black; color:#0f0; z-index:99999; display:flex; align-items:center; justify-content:center; font-family:monospace; padding:20px; }
+    #login-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:#050505; z-index:99998; display:none; align-items:center; justify-content:center; text-align:center; color:white; }
+    .login-box { background:#151515; padding:40px; border-radius:20px; border:1px solid #FFB6C1; width:90%; max-width:350px; }
+    .input-field { width:100%; padding:12px; margin:10px 0; background:#222; border:1px solid #FFB6C1; border-radius:8px; color:white; }
+    .btn-login { background:#D4AF37; color:black; padding:12px 30px; border:none; border-radius:25px; cursor:pointer; font-weight:600; width:100%; }
+
+    /* Estilos Originais */
+    :root { --bg-color: #080808; --bg-card: #151515; --text-main: #f5f5f5; --text-muted: #a0a0a0; --accent-gold: #D4AF37; --accent-pink: #FFB6C1; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 0; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s, transform 1s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero { height: 100vh; background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.85)), url('IMG_0992.jpeg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: flex-end; text-align: center; padding-bottom: 60px; }
+    .hero h1 { font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 5px; }
+    .hero h3 { font-size: 1.1rem; color: var(--accent-pink); font-family: 'Poppins', sans-serif; font-weight: 400; letter-spacing: 2px; margin-bottom: 8px; }
+    .btn { display: inline-block; background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(5px); color: var(--text-main); border: 1px solid var(--accent-gold); padding: 12px 35px; border-radius: 30px; text-transform: uppercase; text-decoration: none; transition: all 0.4s; }
+    .gallery-item { margin-bottom: 40px; background: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+    .gallery-item img { width: 100%; display: block; }
+    .easter-egg-btn { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid rgba(255, 182, 193, 0.3); border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 100; }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-content { background: var(--bg-card); width: 90%; max-width: 350px; border-radius: 20px; padding: 30px 20px; text-align: center; border: 1px solid rgba(255, 182, 193, 0.2); }
+    .modal-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 15px auto; border: 2px solid var(--accent-pink); }
+</style>
 </head>
 <body>
 
-    <div id="hacker-screen" class="hacker-screen"><div id="hacker-text"></div></div>
-
-    <div id="envelope-screen" class="envelope-screen hidden">
+    <!-- CAMADAS ADICIONADAS -->
+    <div id="hacker-screen"><div id="hacker-text"></div></div>
+    <div id="login-screen">
         <div class="login-box">
-            <h2 style="color: var(--accent-pink);">Verificação 🔐</h2>
-            <input type="text" id="login-nome" placeholder="Seu nome" class="input-form">
-            <input type="date" id="login-data" class="input-form">
-            <button id="btn-desbloquear" class="btn-login">Desbloquear</button>
+            <h2 style="color:#FFB6C1; margin-bottom:20px;">Verificação 🔐</h2>
+            <input type="text" id="login-nome" placeholder="Seu nome" class="input-field">
+            <input type="date" id="login-data" class="input-field">
+            <button id="btn-login" class="btn-login">Acessar</button>
             <p id="erro-msg" style="color:red; margin-top:10px; display:none;">Dados incorretos!</p>
         </div>
     </div>
 
+    <!-- CONTEÚDO ORIGINAL -->
     <header class="hero">
-        <div class="container">
-            <h1 style="color: var(--accent-gold);">1 mês de história</h1>
+        <div class="container reveal">
+            <h1>1 mês de história<br>(até agora)</h1>
+            <h3>24 de maio &rarr; 24 de junho</h3>
+            <a href="#galeria" class="btn" id="btn-entrar">Entrar</a>
         </div>
     </header>
 
-    <div class="container">
-        <h2>Registros</h2>
-        <div class="gallery-item"><img src="IMG_0671_Original.jpeg" width="100%"></div>
-        <div class="gallery-item"><img src="IMG_0986.jpeg" width="100%"></div>
-        
-        <button id="btn-doce" style="background:none; border:none; font-size:40px; cursor:pointer;">🍭</button>
-    </div>
+    <section id="galeria" class="container">
+        <h2 class="section-title reveal">Registros</h2>
+        <div class="gallery-item reveal"><img src="IMG_0671_Original.jpeg" alt="Foto 1"></div>
+        <div class="gallery-item reveal"><img src="IMG_0986.jpeg" alt="Foto 2"></div>
+        <div class="gallery-item reveal"><img src="IMG_0984.jpeg" alt="Foto 3"></div>
+    </section>
+
+    <div class="easter-egg-btn" id="btn-easter-egg">🍭</div>
 
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
-            <img src="IMG_1052.jpeg" class="modal-img">
-            <h3>Cleiceane</h3>
-            <p>Subespécie: Formiga 🍬</p>
-            <p style="margin: 15px 0;">Nível de amor por doces: 100%</p>
-            <button class="btn-login" onclick="document.getElementById('modal').classList.remove('active')">Fechar</button>
+            <div id="modal-result">
+                <div style="color: #00C851; font-weight: bold; margin-bottom: 10px;">IDENTIDADE CONFIRMADA ✅</div>
+                <img src="IMG_1052.jpeg" alt="Figurinha" class="modal-img">
+                <div style="text-align: left; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; font-size: 0.9rem;">
+                    Nome: <span>Cleiceane</span><br>
+                    Subespécie: <span>Formiga 🍬</span><br>
+                    Nível de amor por doces: <span>100%</span>
+                </div>
+                <button class="btn" onclick="document.getElementById('modal').classList.remove('active')" style="width:100%; margin-top:15px;">Aceitar diagnóstico</button>
+            </div>
         </div>
     </div>
 
     <script>
+        // Lógica de Segurança
         const txt = document.getElementById('hacker-text');
-        const msgs = ["Iniciando...", "🚨 INVASÃO POR KAYKY 🚨", "Acessando arquivos..."];
+        const msgs = ["Iniciando rastreamento...", "🚨 INVASÃO POR KAYKY 🚨", "Acessando arquivos..."];
         let i = 0;
         function digita() {
             if (i < msgs.length) { txt.innerHTML += msgs[i] + "<br>"; i++; setTimeout(digita, 800); }
-            else { setTimeout(() => { document.getElementById('hacker-screen').classList.add('hidden'); document.getElementById('envelope-screen').classList.remove('hidden'); }, 1000); }
+            else { setTimeout(() => { document.getElementById('hacker-screen').style.display = 'none'; document.getElementById('login-screen').style.display = 'flex'; }, 1000); }
         }
         digita();
 
-        document.getElementById('btn-desbloquear').onclick = () => {
-            if (document.getElementById('login-nome').value.toLowerCase().includes('cleice') && document.getElementById('login-data').value === '2026-05-24') {
-                document.getElementById('envelope-screen').classList.add('hidden');
+        document.getElementById('btn-login').onclick = () => {
+            const nome = document.getElementById('login-nome').value.toLowerCase();
+            const data = document.getElementById('login-data').value;
+            if (nome.includes('cleice') && data === '2026-05-24') {
+                document.getElementById('login-screen').style.display = 'none';
             } else { document.getElementById('erro-msg').style.display = 'block'; }
         };
 
-        document.getElementById('btn-doce').onclick = () => document.getElementById('modal').classList.add('active');
+        // Lógica Original
+        document.getElementById('btn-entrar').addEventListener('click', (e) => { e.preventDefault(); document.querySelector('#galeria').scrollIntoView({ behavior: 'smooth' }); });
+        document.getElementById('btn-easter-egg').addEventListener('click', () => { document.getElementById('modal').classList.add('active'); });
     </script>
 </body>
 </html>
