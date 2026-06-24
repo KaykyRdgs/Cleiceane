@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 mês de história</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS DA CAMADA DE SEGURANÇA --- */
+        #hacker-layer { position:fixed; top:0; left:0; width:100%; height:100%; background:black; color:#0f0; z-index:99999; display:flex; align-items:center; justify-content:center; font-family:monospace; padding:20px; text-align:center; }
+        #login-layer { position:fixed; top:0; left:0; width:100%; height:100%; background:#050505; z-index:99998; display:none; align-items:center; justify-content:center; }
+        .login-box { background:#151515; padding:40px; border-radius:20px; border:1px solid #FFB6C1; width:90%; max-width:350px; text-align:center; }
+        .input-login { width:100%; padding:12px; margin:10px 0; background:#222; border:1px solid #FFB6C1; border-radius:8px; color:white; }
+        .btn-login { background:#D4AF37; color:black; padding:12px 30px; border:none; border-radius:25px; cursor:pointer; font-weight:600; width:100%; }
+
+        /* --- SEU CSS ORIGINAL --- */
+        :root { --bg-color: #080808; --bg-card: #151515; --text-main: #f5f5f5; --text-muted: #a0a0a0; --accent-gold: #D4AF37; --accent-pink: #FFB6C1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+        .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s, transform 1s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .hero { height: 100vh; background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.85)), url('IMG_0992.jpeg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: flex-end; text-align: center; padding-bottom: 60px; }
+        .btn { display: inline-block; background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(5px); color: var(--text-main); border: 1px solid var(--accent-gold); padding: 12px 35px; border-radius: 30px; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+        .gallery-item { margin-bottom: 40px; background: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .gallery-item img { width: 100%; display: block; }
+        .gallery-caption { padding: 20px; text-align: center; font-style: italic; color: var(--text-muted); }
+        .learnings-list { list-style: none; }
+        .learnings-list li { background: var(--bg-card); margin-bottom: 15px; padding: 20px; border-radius: 12px; display: flex; align-items: center; border-left: 3px solid var(--accent-pink); }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .stat-card { background: var(--bg-card); padding: 25px 15px; border-radius: 16px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.1); }
+        .stat-value { font-size: 1.8rem; color: var(--accent-gold); }
+        .easter-egg-btn { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid rgba(255, 182, 193, 0.3); border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 100; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--bg-card); width: 90%; max-width: 350px; border-radius: 20px; padding: 30px 20px; text-align: center; border: 1px solid rgba(255, 182, 193, 0.2); }
+        .modal-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 15px auto; border: 2px solid var(--accent-pink); }
+        .progress-container { width: 100%; height: 8px; background: #000; border-radius: 10px; margin: 10px 0; overflow: hidden; }
+        .progress-bar { width: 0%; height: 100%; background: var(--accent-pink); transition: width 1.5s; }
+    </style>
+</head>
+<body>
+
+    <!-- CAMADAS DE SEGURANÇA -->
+    <div id="hacker-layer"><div id="hacker-text"></div></div>
+    <div id="login-layer">
+        <div class="login-box">
+            <h2 style="color:var(--accent-pink); margin-bottom:20px;">Verificação 🔐</h2>
+            <input type="text" id="login-nome" placeholder="Seu nome" class="input-login">
+            <input type="date" id="login-data" class="input-login">
+            <button id="btn-login" class="btn-login">Acessar</button>
+            <p id="erro-msg" style="color:red; margin-top:10px; display:none;">Dados incorretos!</p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO ORIGINAL -->
+    <header class="hero">
+        <div class="container reveal">
+            <h1>1 mês de história<br>(até agora)</h1>
+            <h3>24 de maio &rarr; 24 de junho</h3>
+            <a href="#galeria" class="btn" id="btn-entrar">Entrar</a>
+        </div>
+    </header>
+
+    <section id="galeria" class="container">
+        <h2 class="section-title reveal">Registros</h2>
+        <div class="gallery-item reveal"><img src="IMG_0671_Original.jpeg"></div>
+        <div class="gallery-item reveal"><img src="IMG_0986.jpeg"></div>
+        <div class="gallery-item reveal"><img src="IMG_0984.jpeg"></div>
+    </section>
+
+    <section class="container"><h2 class="section-title">Aprendi sobre você</h2>
+        <ul class="learnings-list reveal">
+            <li><span>✅</span> Gosta de doce</li>
+            <li><span>✅</span> Figurinha nata</li>
+        </ul>
+    </section>
+
+    <section class="container"><h2 class="section-title">Estatísticas</h2>
+        <div class="stats-grid reveal">
+            <div class="stat-card"><div class="stat-value">1 mês</div><p>Tempo</p></div>
+            <div class="stat-card"><div class="stat-value">&infin;</div><p>Doces</p></div>
+        </div>
+    </section>
+
+    <div class="easter-egg-btn" id="btn-easter-egg">🍭</div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div style="color: #00C851; font-weight: bold; margin-bottom: 10px;">IDENTIDADE CONFIRMADA ✅</div>
+            <img src="IMG_1052.jpeg" class="modal-img">
+            <div style="text-align: left; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; font-size: 0.9rem;">
+                Nome: <span>Cleiceane</span><br>
+                Subespécie: <span>Formiga 🍬</span><br>
+                Nível de amor por doces: <span>100%</span>
+                <div class="progress-container"><div class="progress-bar" id="barra-doce"></div></div>
+            </div>
+            <button class="btn" onclick="document.getElementById('modal').classList.remove('active')" style="width:100%; margin-top:15px;">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // SEGURANÇA
+        const txt = document.getElementById('hacker-text');
+        const msgs = ["Iniciando rastreamento...", "🚨 INVASÃO POR KAYKY 🚨", "Acessando arquivos..."];
+        let i = 0;
+        function digita() {
+            if (i < msgs.length) { txt.innerHTML += msgs[i] + "<br>"; i++; setTimeout(digita, 800); }
+            else { setTimeout(() => { document.getElementById('hacker-layer').style.display = 'none'; document.getElementById('login-layer').style.display = 'flex'; }, 1000); }
+        }
+        digita();
+
+        document.getElementById('btn-login').onclick = () => {
+            const nome = document.getElementById('login-nome').value.toLowerCase();
+            const data = document.getElementById('login-data').value;
+            if (nome.includes('cleice') && data === '2026-05-24') {
+                document.getElementById('login-layer').style.display = 'none';
+            } else { document.getElementById('erro-msg').style.display = 'block'; }
+        };
+
+        // ORIGINAL
+        document.getElementById('btn-entrar').addEventListener('click', (e) => { e.preventDefault(); document.querySelector('#galeria').scrollIntoView({ behavior: 'smooth' }); });
+        document.getElementById('btn-easter-egg').addEventListener('click', () => { 
+            document.getElementById('modal').classList.add('active');
+            setTimeout(() => { document.getElementById('barra-doce').style.width = '100%'; }, 500);
+        });
+    </script>
+</body>
+</html>
