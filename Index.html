@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 mês de história</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #080808; --accent-gold: #D4AF37; --accent-pink: #FFB6C1; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: #fff; margin:0; }
+        
+        /* Hacker e Carta */
+        .hacker-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: black; color: #0f0; font-family: 'Courier New', monospace; padding: 30px; z-index: 99999; display: flex; align-items: center; justify-content: center; }
+        .envelope-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; z-index: 99998; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hidden { display: none !important; }
+        .login-container { background: #151515; padding: 40px; border-radius: 20px; border: 1px solid var(--accent-pink); width: 90%; max-width: 350px; }
+        .input-form { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid var(--accent-pink); border-radius: 8px; color: #fff; }
+        .btn { background: var(--accent-gold); color: #000; padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; width: 100%; }
+
+        /* Site */
+        .hero { height: 100vh; background: url('IMG_0992.jpeg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .glass-box { background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid var(--accent-gold); max-width: 400px; }
+        .section { padding: 80px 20px; max-width: 600px; margin: auto; }
+        .gallery-item { margin-bottom: 40px; background: #151515; border-radius: 16px; overflow: hidden; padding: 20px; }
+        .heart-particle { position: fixed; bottom: -10vh; pointer-events: none; z-index: 1; animation: floatUp 5s linear forwards; }
+        @keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <div id="hacker-screen" class="hacker-screen"><div id="hacker-text"></div></div>
+
+    <div id="envelope-screen" class="envelope-screen hidden">
+        <div class="login-container">
+            <h2 style="color: var(--accent-pink);">Verificação 🔐</h2>
+            <input type="text" id="login-nome" placeholder="Seu nome" class="input-form">
+            <input type="date" id="login-data" class="input-form">
+            <button id="btn-desbloquear" class="btn">Entrar</button>
+            <p id="login-erro" style="color: red; display: none; margin-top: 10px;">Dados incorretos!</p>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="glass-box">
+            <h1>1 mês de história</h1>
+            <p>O começo de tudo...</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>Registros</h2>
+        <div class="gallery-item"><img src="IMG_0671_Original.jpeg" width="100%"></div>
+        <div class="gallery-item"><img src="IMG_0986.jpeg" width="100%"></div>
+        <div class="gallery-item"><img src="IMG_0984.jpeg" width="100%"></div>
+    </section>
+
+    <script>
+        // Hacker
+        const hText = document.getElementById('hacker-text');
+        const msgs = ["Iniciando invasão...", "Localizando IP...", "🚨 INVASÃO POR KAYKY 🚨", "Acessando arquivos..."];
+        let i = 0;
+        function digita() {
+            if (i < msgs.length) { hText.innerHTML += msgs[i] + "<br>"; i++; setTimeout(digita, 800); }
+            else { setTimeout(() => { document.getElementById('hacker-screen').classList.add('hidden'); document.getElementById('envelope-screen').classList.remove('hidden'); }, 1000); }
+        }
+        digita();
+
+        // Login
+        document.getElementById('btn-desbloquear').onclick = () => {
+            const nome = document.getElementById('login-nome').value.toLowerCase();
+            const data = document.getElementById('login-data').value;
+            if (nome.includes('cleice') && data === '2026-05-24') {
+                document.getElementById('envelope-screen').classList.add('hidden');
+                setInterval(() => {
+                    const h = document.createElement('div'); h.className = 'heart-particle'; h.innerHTML = '❤️';
+                    h.style.left = Math.random() * 100 + 'vw'; document.body.appendChild(h);
+                    setTimeout(() => h.remove(), 5000);
+                }, 400);
+            } else { document.getElementById('login-erro').style.display = 'block'; }
+        };
+    </script>
+</body>
+</html>
